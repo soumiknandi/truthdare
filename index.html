@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+      var spins = 0;
+      var people = ["Ankana", "Soumik", "Diganta", "Saikat", "Anirban"];
+      function spin() {
+        spins++;
+        var winner = Math.floor(Math.random() * people.length);
+        var rotation = spins * 720 + winner * (360 / people.length);
+        $("img").css("transform", "rotate(" + rotation + "deg)");
+        setTimeout(function() {
+          $("output").html(people[winner]);
+        }, 3000);
+      }
+    </script>
+    <style>
+      img {
+        transition: transform 3s ease-out;
+      }
+
+      .p1 {
+        grid-area: p1;
+      }
+      .p2 {
+        grid-area: p2;
+      }
+      .p3 {
+        grid-area: p3;
+      }
+      .p4 {
+        grid-area: p4;
+      }
+      .p5 {
+        grid-area: p5;
+      }
+      .np1 {
+        grid-area: np1;
+      }
+      .np2 {
+        grid-area: np2;
+      }
+      .np3 {
+        grid-area: np3;
+      }
+
+      .container {
+        display: grid;
+        /* grid-template-columns: 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px; */
+        grid-auto-rows: 1fr;
+        grid-template-areas:
+          "p1 np1 p2"
+          "p3 bottle p4"
+          "np2 p5 np3";
+      }
+    </style>
+  </head>
+  <body style="text-align: center">
+    <div class="container">
+      <div class="p1"></div>
+      <div class="np1">Ankana</div>
+      <div class="p2"></div>
+      <div class="p3">Anirban</div>
+      <div class="bottle">
+        <img
+          src="bottle.png"
+          width="100"
+          height="auto"
+        />
+      </div>
+      <div class="p4">
+        Soumik
+      </div>
+      <div class="np2">
+        Saikat
+      </div>
+      <div class="p5">
+        <output></output>
+        <button type="button" onclick="spin()">Spin!</button>
+      </div>
+      <div class="np3">
+        Diganta
+      </div>
+    </div>
+  </body>
+</html>
